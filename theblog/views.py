@@ -13,9 +13,8 @@ class HomeView(ListView):
     #ordering=['-id']
 
 def CategoryView(request,category_detail):
-    category_posts=Post.objects.filter(category=category_detail)
-    return render(request, 'categories.html', {'category_detail':category_detail.title(), 'category_posts':category_posts})
-
+    category_posts=Post.objects.filter(category=category_detail.replace('-',' '))
+    return render(request, 'categories.html', {'category_detail':category_detail.title().replace('-',' '), 'category_posts':category_posts})
 
 class ArticleDetailView(DetailView):
     model=Post
